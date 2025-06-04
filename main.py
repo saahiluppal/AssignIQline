@@ -34,10 +34,6 @@ if uploaded_file is not None:
     uploaded_image = Image.open(uploaded_file)
     selected_image = uploaded_image
 
-    
-
-    
-
 ## 
 import os
 import cv2
@@ -200,3 +196,5 @@ def process_and_display_results(image: Image.Image):
 if selected_image:
     st.image(selected_image.resize((512, 512)), caption="Image", use_container_width=True)
     process_and_display_results(selected_image)
+
+selected_image = None
