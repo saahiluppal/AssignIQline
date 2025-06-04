@@ -23,7 +23,6 @@ if st.button("Select Random Image"):
             random_file = random.choice(image_files)
             random_image = Image.open(os.path.join(random_dir, random_file))
             selected_image = random_image
-            st.image(selected_image.resize((512, 512)), caption="Randomly Selected Image")
         else:
             st.warning("No valid images found in random_images/ directory.")
     else:
@@ -33,9 +32,11 @@ uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
     uploaded_image = Image.open(uploaded_file)
-    st.image(uploaded_image.resize((512, 512)), caption="Uploaded Image", use_container_width=True)
-
     selected_image = uploaded_image
+
+    
+
+    
 
 ## 
 import os
@@ -196,5 +197,6 @@ def process_and_display_results(image: Image.Image):
 # Empty function to process image
 
 # If an image is selected, process it
-if selected_image or uploaded_image:
+if selected_image:
+    st.image(selected_image.resize((512, 512)), caption="Image", use_container_width=True)
     process_and_display_results(selected_image)
