@@ -9,10 +9,11 @@ st.set_page_config(page_title="Rapid Test Line Detection", layout="centered")
 st.title("📷 Rapid Test Line Detection")
 
 # Image selection section
-st.header("Select a Random Image From the Database")
+st.header("Select a Random Image From the Database or Upload your own")
 
 # Random selection button
 random_image = None
+uploaded_image = None
 selected_image = None
 if st.button("Select Random Image"):
     random_dir = "random_images/"
@@ -27,6 +28,14 @@ if st.button("Select Random Image"):
             st.warning("No valid images found in random_images/ directory.")
     else:
         st.error("random_images/ directory not found.")
+
+uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
+
+if uploaded_file is not None:
+    uploaded_image = Image.open(uploaded_file)
+    st.image(uploaded_image.resize((512, 512)), caption="Uploaded Image", use_container_width=True)
+
+    selected_image = uploaded_image
 
 ## 
 import os
@@ -187,5 +196,5 @@ def process_and_display_results(image: Image.Image):
 # Empty function to process image
 
 # If an image is selected, process it
-if selected_image:
+if selected_image or uploaded_image:
     process_and_display_results(selected_image)
