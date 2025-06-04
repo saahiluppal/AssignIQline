@@ -9,7 +9,7 @@ st.set_page_config(page_title="Rapid Test Line Detection", layout="centered")
 st.title("📷 Rapid Test Line Detection")
 
 # Image selection section
-st.header("Select a Random Image")
+st.header("Select a Random Image From the Database")
 
 # Random selection button
 random_image = None
